@@ -1,9 +1,209 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Soccer Arena</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soccer Arena</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, sans-serif;
+    }
+
+    body{
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:linear-gradient(-45deg,#050816,#0d0221,#001f3f,#13001f);
+        background-size:400% 400%;
+        animation:bgMove 12s ease infinite;
+        color:white;
+        overflow:hidden;
+    }
+
+    @keyframes bgMove{
+        0%{background-position:0% 50%;}
+        50%{background-position:100% 50%;}
+        100%{background-position:0% 50%;}
+    }
+
+    .card{
+        width:90%;
+        max-width:700px;
+        padding:40px;
+        text-align:center;
+        border:2px solid #00ffff;
+        border-radius:25px;
+        backdrop-filter:blur(15px);
+        background:rgba(255,255,255,0.05);
+        box-shadow:
+            0 0 20px #00ffff,
+            0 0 40px #00ffff44;
+    }
+
+    h1{
+        font-size:3rem;
+        color:#00ffff;
+        text-shadow:
+            0 0 10px #00ffff,
+            0 0 20px #00ffff;
+    }
+
+    .subtitle{
+        margin:15px 0;
+        color:#d6d6ff;
+        font-size:1.1rem;
+    }
+
+    #clock{
+        font-size:2rem;
+        margin:20px 0;
+        color:#ff00ff;
+        text-shadow:
+            0 0 10px #ff00ff,
+            0 0 20px #ff00ff;
+    }
+
+    button{
+        margin:10px;
+        padding:12px 25px;
+        border:none;
+        border-radius:50px;
+        cursor:pointer;
+        background:#00ffff;
+        color:black;
+        font-weight:bold;
+        transition:0.3s;
+        box-shadow:0 0 15px #00ffff;
+    }
+
+    button:hover{
+        transform:translateY(-3px) scale(1.05);
+        box-shadow:
+            0 0 20px #00ffff,
+            0 0 40px #00ffff;
+    }
+
+    #status{
+        margin-top:20px;
+        font-size:1.2rem;
+        color:#ffff99;
+    }
+
+    .particles span{
+        position:absolute;
+        display:block;
+        width:5px;
+        height:5px;
+        background:#00ffff;
+        border-radius:50%;
+        box-shadow:0 0 10px #00ffff;
+        animation:float linear infinite;
+    }
+
+    @keyframes float{
+        from{
+            transform:translateY(100vh);
+        }
+        to{
+            transform:translateY(-10vh);
+        }
+    }
+</style>
 </head>
+
 <body>
-    <h1>Welcome to Soccer Arena!</h1>
+
+<div class="particles" id="particles"></div>
+
+<div class="card">
+    <h1>⚽ Soccer Arena</h1>
+
+    <p class="subtitle">
+        Welcome to the Neon Arena.
+        Fast. Competitive. Futuristic.
+    </p>
+
+    <div id="clock">Loading...</div>
+
+    <button onclick="changeStatus()">Random Status</button>
+
+    <button onclick="changeTheme()">Switch Glow</button>
+
+    <div id="status">
+        Ready for kickoff!
+    </div>
+</div>
+
+<script>
+    // Live Clock
+    function updateClock(){
+        const now = new Date();
+        document.getElementById("clock").textContent =
+            now.toLocaleTimeString();
+    }
+
+    setInterval(updateClock,1000);
+    updateClock();
+
+    // Random Status
+    const statuses = [
+        "⚽ Match starting...",
+        "🔥 Players warming up!",
+        "🏆 Championship mode!",
+        "💥 Goal incoming!",
+        "🚀 Arena servers online!",
+        "🎮 Time to dominate!"
+    ];
+
+    function changeStatus(){
+        const random =
+            statuses[Math.floor(Math.random()*statuses.length)];
+
+        document.getElementById("status").textContent = random;
+    }
+
+    // Theme Switcher
+    let blue = true;
+
+    function changeTheme(){
+        const card = document.querySelector(".card");
+        const title = document.querySelector("h1");
+
+        if(blue){
+            card.style.borderColor = "#ff00ff";
+            card.style.boxShadow = "0 0 20px #ff00ff";
+            title.style.color = "#ff00ff";
+            title.style.textShadow = "0 0 20px #ff00ff";
+        }else{
+            card.style.borderColor = "#00ffff";
+            card.style.boxShadow = "0 0 20px #00ffff";
+            title.style.color = "#00ffff";
+            title.style.textShadow = "0 0 20px #00ffff";
+        }
+
+        blue = !blue;
+    }
+
+    // Floating Neon Particles
+    const container = document.getElementById("particles");
+
+    for(let i=0;i<40;i++){
+        const dot = document.createElement("span");
+
+        dot.style.left = Math.random()*100 + "%";
+        dot.style.animationDuration =
+            (5 + Math.random()*10) + "s";
+
+        dot.style.opacity = Math.random();
+
+        container.appendChild(dot);
+    }
+</script>
+
 </body>
 </html>
