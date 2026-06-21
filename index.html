@@ -1,209 +1,371 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Soccer Arena</title>
+<title>Soccer Arena | Official Website</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family:Arial, sans-serif;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Orbitron',sans-serif;
+}
 
-    body{
-        min-height:100vh;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        background:linear-gradient(-45deg,#050816,#0d0221,#001f3f,#13001f);
-        background-size:400% 400%;
-        animation:bgMove 12s ease infinite;
-        color:white;
-        overflow:hidden;
-    }
+body{
+    background:linear-gradient(135deg,#050816,#08152f,#0b2452);
+    color:white;
+    overflow-x:hidden;
+}
 
-    @keyframes bgMove{
-        0%{background-position:0% 50%;}
-        50%{background-position:100% 50%;}
-        100%{background-position:0% 50%;}
-    }
+/* Animated Background */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at 20% 20%,rgba(0,174,255,.15),transparent 20%),
+    radial-gradient(circle at 80% 40%,rgba(0,132,255,.15),transparent 20%),
+    radial-gradient(circle at 50% 90%,rgba(0,89,255,.15),transparent 25%);
+    animation:floatBg 10s ease-in-out infinite alternate;
+    z-index:-2;
+}
 
-    .card{
-        width:90%;
-        max-width:700px;
-        padding:40px;
-        text-align:center;
-        border:2px solid #00ffff;
-        border-radius:25px;
-        backdrop-filter:blur(15px);
-        background:rgba(255,255,255,0.05);
-        box-shadow:
-            0 0 20px #00ffff,
-            0 0 40px #00ffff44;
-    }
+@keyframes floatBg{
+    from{transform:translateY(0);}
+    to{transform:translateY(-30px);}
+}
 
-    h1{
-        font-size:3rem;
-        color:#00ffff;
-        text-shadow:
-            0 0 10px #00ffff,
-            0 0 20px #00ffff;
-    }
+/* Navigation */
 
-    .subtitle{
-        margin:15px 0;
-        color:#d6d6ff;
-        font-size:1.1rem;
-    }
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 10%;
+    backdrop-filter:blur(15px);
+    background:rgba(0,0,0,0.25);
+    position:sticky;
+    top:0;
+    z-index:999;
+}
 
-    #clock{
-        font-size:2rem;
-        margin:20px 0;
-        color:#ff00ff;
-        text-shadow:
-            0 0 10px #ff00ff,
-            0 0 20px #ff00ff;
-    }
+.logo{
+    font-size:2rem;
+    font-weight:800;
+    color:#4dc3ff;
+    text-shadow:0 0 15px #00aaff;
+}
 
-    button{
-        margin:10px;
-        padding:12px 25px;
-        border:none;
-        border-radius:50px;
-        cursor:pointer;
-        background:#00ffff;
-        color:black;
-        font-weight:bold;
-        transition:0.3s;
-        box-shadow:0 0 15px #00ffff;
-    }
+nav ul{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
 
-    button:hover{
-        transform:translateY(-3px) scale(1.05);
-        box-shadow:
-            0 0 20px #00ffff,
-            0 0 40px #00ffff;
-    }
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
 
-    #status{
-        margin-top:20px;
-        font-size:1.2rem;
-        color:#ffff99;
-    }
+nav a:hover{
+    color:#4dc3ff;
+}
 
-    .particles span{
-        position:absolute;
-        display:block;
-        width:5px;
-        height:5px;
-        background:#00ffff;
-        border-radius:50%;
-        box-shadow:0 0 10px #00ffff;
-        animation:float linear infinite;
-    }
+/* Hero */
 
-    @keyframes float{
-        from{
-            transform:translateY(100vh);
-        }
-        to{
-            transform:translateY(-10vh);
-        }
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.hero h1{
+    font-size:5rem;
+    text-transform:uppercase;
+    text-shadow:
+    0 0 20px #00aaff,
+    0 0 50px #0077ff;
+}
+
+.hero p{
+    margin-top:25px;
+    font-size:1.2rem;
+    color:#cfdfff;
+    line-height:1.8;
+}
+
+.buttons{
+    margin-top:40px;
+}
+
+.btn{
+    display:inline-block;
+    padding:18px 35px;
+    margin:10px;
+    border-radius:50px;
+    text-decoration:none;
+    color:white;
+    font-weight:700;
+    transition:.3s;
+}
+
+.download{
+    background:linear-gradient(90deg,#0099ff,#005eff);
+    box-shadow:0 0 25px #008cff;
+}
+
+.download:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 40px #00aaff;
+}
+
+.discord{
+    border:2px solid #4dc3ff;
+}
+
+.discord:hover{
+    background:#4dc3ff22;
+}
+
+/* Features */
+
+.section{
+    padding:100px 10%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:3rem;
+    margin-bottom:60px;
+    color:#4dc3ff;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(77,195,255,.2);
+    backdrop-filter:blur(15px);
+    padding:35px;
+    border-radius:25px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 25px rgba(0,153,255,.4);
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:#63d1ff;
+}
+
+/* APK Section */
+
+.apk-box{
+    text-align:center;
+    background:rgba(255,255,255,.05);
+    border-radius:30px;
+    padding:60px;
+}
+
+.apk-box p{
+    margin:20px auto;
+    max-width:700px;
+    color:#d6e7ff;
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    padding:40px;
+    color:#9bb5db;
+}
+
+/* Floating Ball */
+
+.ball{
+    position:fixed;
+    font-size:50px;
+    right:40px;
+    bottom:40px;
+    animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+    0%,100%{
+        transform:translateY(0);
     }
+    50%{
+        transform:translateY(-20px);
+    }
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:3rem;
+}
+
+nav{
+    flex-direction:column;
+    gap:20px;
+}
+
+nav ul{
+    flex-wrap:wrap;
+    justify-content:center;
+}
+}
 </style>
 </head>
 
 <body>
 
-<div class="particles" id="particles"></div>
+<nav>
+    <div class="logo">SOCCER ARENA</div>
 
-<div class="card">
-    <h1>⚽ Soccer Arena</h1>
+    <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#download">Download</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+</nav>
 
-    <p class="subtitle">
-        Welcome to the Neon Arena.
-        Fast. Competitive. Futuristic.
-    </p>
+<section class="hero">
 
-    <div id="clock">Loading...</div>
+<div class="hero-content">
 
-    <button onclick="changeStatus()">Random Status</button>
+<h1>ENTER THE FUTURE OF FOOTBALL</h1>
 
-    <button onclick="changeTheme()">Switch Glow</button>
+<p>
+Fast-paced arena football meets sci-fi energy.
+Dash. Shoot. Outsmart opponents.
+Welcome to Soccer Arena — where every match feels
+like a futuristic esports showdown.
+</p>
 
-    <div id="status">
-        Ready for kickoff!
-    </div>
+<div class="buttons">
+
+<a class="btn download" href="SoccerArena.apk" download>
+⬇ DOWNLOAD APK
+</a>
+
+<a class="btn discord" href="#">
+JOIN COMMUNITY
+</a>
+
 </div>
 
-<script>
-    // Live Clock
-    function updateClock(){
-        const now = new Date();
-        document.getElementById("clock").textContent =
-            now.toLocaleTimeString();
-    }
+</div>
 
-    setInterval(updateClock,1000);
-    updateClock();
+</section>
 
-    // Random Status
-    const statuses = [
-        "⚽ Match starting...",
-        "🔥 Players warming up!",
-        "🏆 Championship mode!",
-        "💥 Goal incoming!",
-        "🚀 Arena servers online!",
-        "🎮 Time to dominate!"
-    ];
+<section class="section" id="features">
 
-    function changeStatus(){
-        const random =
-            statuses[Math.floor(Math.random()*statuses.length)];
+<h2 class="section-title">GAME FEATURES</h2>
 
-        document.getElementById("status").textContent = random;
-    }
+<div class="features">
 
-    // Theme Switcher
-    let blue = true;
+<div class="card">
+<h3>⚡ High-Speed Gameplay</h3>
+<p>
+Quick arena matches built for nonstop action.
+Every second matters.
+</p>
+</div>
 
-    function changeTheme(){
-        const card = document.querySelector(".card");
-        const title = document.querySelector("h1");
+<div class="card">
+<h3>🚀 Sci-Fi Atmosphere</h3>
+<p>
+Neon blue aesthetics, futuristic arenas,
+and gamer-inspired visuals.
+</p>
+</div>
 
-        if(blue){
-            card.style.borderColor = "#ff00ff";
-            card.style.boxShadow = "0 0 20px #ff00ff";
-            title.style.color = "#ff00ff";
-            title.style.textShadow = "0 0 20px #ff00ff";
-        }else{
-            card.style.borderColor = "#00ffff";
-            card.style.boxShadow = "0 0 20px #00ffff";
-            title.style.color = "#00ffff";
-            title.style.textShadow = "0 0 20px #00ffff";
-        }
+<div class="card">
+<h3>🎮 Skill-Based Competition</h3>
+<p>
+Master dashes, precise shots,
+and tactical positioning.
+</p>
+</div>
 
-        blue = !blue;
-    }
+<div class="card">
+<h3>📱 Play Anywhere</h3>
+<p>
+Download the APK and jump straight into the arena.
+No waiting.
+</p>
+</div>
 
-    // Floating Neon Particles
-    const container = document.getElementById("particles");
+</div>
 
-    for(let i=0;i<40;i++){
-        const dot = document.createElement("span");
+</section>
 
-        dot.style.left = Math.random()*100 + "%";
-        dot.style.animationDuration =
-            (5 + Math.random()*10) + "s";
+<section class="section" id="download">
 
-        dot.style.opacity = Math.random();
+<div class="apk-box">
 
-        container.appendChild(dot);
-    }
-</script>
+<h2 class="section-title">DOWNLOAD SOCCER ARENA</h2>
+
+<p>
+Ready to dominate the arena?
+Tap the button below to install the latest version
+of Soccer Arena on your Android device.
+</p>
+
+<a class="btn download" href="SoccerArena.apk" download>
+DOWNLOAD APK v1.0
+</a>
+
+</div>
+
+</section>
+
+<section class="section" id="about">
+
+<h2 class="section-title">ABOUT</h2>
+
+<div class="apk-box">
+
+<p>
+Soccer Arena blends the excitement of football
+with futuristic arcade gameplay.
+Designed for gamers who love competition,
+style, and intense moments.
+This is football reimagined.
+</p>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 Soccer Arena • Official Website
+</footer>
+
+<div class="ball">⚽</div>
 
 </body>
 </html>
+```
